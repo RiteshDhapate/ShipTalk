@@ -76,3 +76,27 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+  @keyframes slideRight {
+          0% {
+            transform: translateX(-10px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        .tool-link:hover .arrow {
+          display: inline-block;
+          animation: slideRight 0.3s ease-out forwards;
+        }
+        .tool-link:hover .icon {
+          color: #eab308;
+          transform: scale(1.1);
+          transition: all 0.3s ease;
+        }
+        .tools-gradient {
+          background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }

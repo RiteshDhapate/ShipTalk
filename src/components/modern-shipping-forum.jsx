@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+import {
   Card,
   CardHeader,
   CardTitle,
@@ -42,7 +48,9 @@ import {
   BoxIcon,
   CalendarIcon,
   HashIcon,
-  Flame,
+  SettingsIcon,
+  ChevronRightIcon,
+  CalculatorIcon,
   UsersIcon,
   VideoIcon,
 } from "lucide-react";
@@ -797,7 +805,8 @@ export default function ModernShippingForum() {
   const [activeTab, setActiveTab] = useState("feed");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [filteredPosts, setFilteredPosts] = useState(samplePosts);
-
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [activeToolIndex, setActiveToolIndex] = useState(null);
   const handleTopicClick = (topic) => {
     setActiveTab("feed");
     setFilteredPosts(samplePosts.filter((post) => post.category === topic));
@@ -817,11 +826,113 @@ export default function ModernShippingForum() {
               </Link>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="hidden md:block">
+              <div className="hidden md:flex items-center space-x-4">
                 <Input
                   placeholder="Search discussions..."
                   className="w-64 bg-gray-700 text-gray-100 border-gray-600 placeholder-gray-400"
                 />
+                <Popover open={isToolsOpen} onOpenChange={setIsToolsOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="text-gray-300 hover:text-yellow-500"
+                      onMouseEnter={() => setIsToolsOpen(true)}
+                      onMouseLeave={() => setIsToolsOpen(false)}
+                    >
+                      <SettingsIcon className="h-5 w-5 mr-2" />
+                      Tools
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="w-64 border-gray-700 tools-gradient"
+                    onMouseEnter={() => setIsToolsOpen(true)}
+                    onMouseLeave={() => setIsToolsOpen(false)}
+                  >
+                    <div className="grid gap-2">
+                      <a href="https://sustainpack.vercel.app" target="_blank">
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start text-gray-300 hover:text-yellow-500 hover:bg-gray-700/50 tool-link group"
+                          onMouseEnter={() => setActiveToolIndex(0)}
+                          onMouseLeave={() => setActiveToolIndex(null)}
+                        >
+                          <CalculatorIcon className="h-4 w-4 mr-2 icon" />
+                          SustainPack Advisor
+                          <ChevronRightIcon
+                            className={`h-4 w-4 ml-auto transition-all duration-300 ${
+                              activeToolIndex === 0
+                                ? "opacity-100"
+                                : "opacity-0"
+                            } arrow`}
+                          />
+                        </Button>
+                      </a>
+                      <a
+                        href="https://ship-talk-shipment-details.vercel.app"
+                        target="_blank"
+                      >
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start text-gray-300 hover:text-yellow-500 hover:bg-gray-700/50 tool-link group"
+                          onMouseEnter={() => setActiveToolIndex(1)}
+                          onMouseLeave={() => setActiveToolIndex(null)}
+                        >
+                          <TruckIcon className="h-4 w-4 mr-2 icon" />
+                          ShipTalk
+                          <ChevronRightIcon
+                            className={`h-4 w-4 ml-auto transition-all duration-300 ${
+                              activeToolIndex === 1
+                                ? "opacity-100"
+                                : "opacity-0"
+                            } arrow`}
+                          />
+                        </Button>
+                      </a>
+                      <a
+                        href="https://shipping-cost-analysis.vercel.app"
+                        target="_blank"
+                      >
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start text-gray-300 hover:text-yellow-500 hover:bg-gray-700/50 tool-link group"
+                          onMouseEnter={() => setActiveToolIndex(2)}
+                          onMouseLeave={() => setActiveToolIndex(null)}
+                        >
+                          <DollarSignIcon className="h-4 w-4 mr-2 icon" />
+                          Shipping Cost Analysis
+                          <ChevronRightIcon
+                            className={`h-4 w-4 ml-auto transition-all duration-300 ${
+                              activeToolIndex === 2
+                                ? "opacity-100"
+                                : "opacity-0"
+                            } arrow`}
+                          />
+                        </Button>
+                      </a>
+                      <a
+                        href="https://pld-analyzer.vercel.app"
+                        target="_blank"
+                      >
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start text-gray-300 hover:text-yellow-500 hover:bg-gray-700/50 tool-link group"
+                          onMouseEnter={() => setActiveToolIndex(3)}
+                          onMouseLeave={() => setActiveToolIndex(null)}
+                        >
+                          <BoxIcon className="h-4 w-4 mr-2 icon" />
+                          PLD Data Analyzer
+                          <ChevronRightIcon
+                            className={`h-4 w-4 ml-auto transition-all duration-300 ${
+                              activeToolIndex === 3
+                                ? "opacity-100"
+                                : "opacity-0"
+                            } arrow`}
+                          />
+                        </Button>
+                      </a>
+                    </div>
+                  </PopoverContent>
+                </Popover>
               </div>
               <Button
                 size="icon"
