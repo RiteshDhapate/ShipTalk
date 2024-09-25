@@ -878,7 +878,7 @@ export default function ModernShippingForum() {
                           onMouseLeave={() => setActiveToolIndex(null)}
                         >
                           <TruckIcon className="h-4 w-4 mr-2 icon" />
-                          ShipTalk
+                          Multivendor Orchestration
                           <ChevronRightIcon
                             className={`h-4 w-4 ml-auto transition-all duration-300 ${
                               activeToolIndex === 1
@@ -909,10 +909,7 @@ export default function ModernShippingForum() {
                           />
                         </Button>
                       </a>
-                      <a
-                        href="https://pld-analyzer.vercel.app"
-                        target="_blank"
-                      >
+                      <a href="https://pld-analyzer.vercel.app" target="_blank">
                         <Button
                           variant="ghost"
                           className="w-full justify-start text-gray-300 hover:text-yellow-500 hover:bg-gray-700/50 tool-link group"
